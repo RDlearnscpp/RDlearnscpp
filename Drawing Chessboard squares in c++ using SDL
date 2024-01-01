@@ -1,0 +1,42 @@
+#include <iostream>
+#include <SDL2/SDL.h>
+
+
+int main(int argc, char* argv[])
+{
+        SDL_Window* window = nullptr;
+        SDL_Renderer* renderer = nullptr;
+        SDL_Init(SDL_INIT_VIDEO);
+        SDL_CreateWindowAndRenderer(400,400,0,&window, &renderer);
+
+       
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        SDL_RenderClear(renderer);
+        SDL_SetRenderDrawColor(renderer, 255,255,255,255);
+
+        int x=0, y=0;
+
+        for( int x=0; x<=400; x++)
+            {
+                for(y=0; y<=400; y++)
+                {
+
+                    if(
+                          (x>=000 && x<=100) && (y>=000 && y<=100) 
+                        ||(x>=200 && x<=300) && (y>=000 && y<=100) 
+                        ||(x>=000 && x<=100) && (y>=200 && y<=300) 
+                        ||(x>=200 && x<=300) && (y>=200 && y<=300)
+                        ||(x>=100 && x<=200) && (y>=100 && y<=200)
+                        )
+                                {                 
+                                    SDL_RenderDrawPoint(renderer, x, y );                                   
+                                 }
+                    }
+
+                
+            }
+
+        SDL_RenderPresent(renderer);
+        SDL_Delay(10000);
+    return 0;
+}
